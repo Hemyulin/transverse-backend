@@ -8,7 +8,7 @@ const app = express();
 const offersRoute = require("./routes/offers.router");
 const authRoutes = require("./routes/auth.router");
 const socialRoutes = require("./routes/social.router");
-
+const reviewRoutes = require("./routes/review.router")
 //connect to mongo
 mongoose
   .connect("mongodb://127.0.0.1:27017")
@@ -23,6 +23,7 @@ mongoose
 const {
   errorHandler,
   notFoundHandler,
+  AppError,
 } = require("./middleware/error-handling");
 
 //CORS
@@ -38,6 +39,7 @@ app.use(morgan("dev"));
 app.use(authRoutes);
 app.use(socialRoutes);
 app.use(offersRoute);
+app.use(reviewRoutes);
 
 //protected route for serching user by ID
 const { isAuthenticated } = require("./middleware/auth");
@@ -49,6 +51,9 @@ app.use(errorHandler);
 
 //Not found handler
 app.use(notFoundHandler);
+
+//AppError
+app.use(AppError);
 
 //listen
 const PORT = process.env.PORT || 3000;

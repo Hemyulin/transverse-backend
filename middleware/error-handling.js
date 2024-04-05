@@ -8,7 +8,7 @@ class AppError extends Error {
   }
 }
 
-const errorHandler = (err, req, res, next) => {
+function errorHandler(err, req, res, next) {
   console.error("Error:", err);
 
   if (!res.headersSent) {
@@ -24,8 +24,10 @@ const errorHandler = (err, req, res, next) => {
   }
 };
 
-const notFoundHandler = (req, res, next) => {
+function notFoundHandler(req, res, next) {
   res.status(404).json({ error: "path not found" });
 };
 
-module.exports = { errorHandler, notFoundHandler, AppError };
+module.exports = errorHandler;
+module.exports = notFoundHandler; 
+module.exports = AppError;
