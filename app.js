@@ -8,7 +8,7 @@ const app = express();
 const offersRoute = require("./routes/offers.router");
 const authRoutes = require("./routes/auth.router");
 const socialRoutes = require("./routes/social.router");
-const reviewRoutes = require("./routes/review.router")
+
 //connect to mongo
 mongoose
   .connect("mongodb://127.0.0.1:27017")
